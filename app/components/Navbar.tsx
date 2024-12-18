@@ -14,7 +14,7 @@ export default async function Navbar() {
 
                 <div className="flex items-center gap-5 text-black">
                     {session && session?.user ? (
-                        <div>
+                        <>
                             <Link href="/startup/create">
                                 <span>Create</span>
                             </Link>
@@ -29,10 +29,10 @@ export default async function Navbar() {
                                 </button>
                             </form>
 
-                            {/* <Link href={`/user/${session?.id}`}>
+                            <Link href={`/user/${session?.id}`}>
                                 <span>{session?.user?.name}</span>
-                            </Link> */}
-                        </div>
+                            </Link>
+                        </>
                     ) : (
                         <form action={async () => {
                             'use server'

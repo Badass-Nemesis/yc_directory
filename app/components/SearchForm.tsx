@@ -1,30 +1,23 @@
 import Form from 'next/form'
+import SearchFormReset from './SearchFormReset';
 
-const SearchForm = () => {
-    const query = "Test"
-
-    const reset = () => {
-        const form = document.querySelector('.search-form') as HTMLFormElement;
-
-        if(form) form.reset();
-    }
-
+const SearchForm = ({ query }: { query?: string }) => {
     return (
         <>
             <Form action="/" scroll={false} className='search-form'>
                 <input
                     name='query'
-                    defaultValue=""
+                    defaultValue={query}
                     className='search-input'
                     placeholder='Search Startups'
                 />
 
                 <div className='flex gap-2'>
-                    {query && (
-                        <button type='reset' onClick={reset}>
+                    {query && <SearchFormReset />}
 
-                        </button>
-                    )}
+                    <button type="submit" className='search-btn text-white'>
+                        S
+                    </button>
                 </div>
             </Form>
             <div>SearchForm</div>

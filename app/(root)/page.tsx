@@ -9,7 +9,7 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ q
     {
       _createdAt: new Date(),
       views: 55,
-      authour: { _id: 1 },
+      author: { _id: 1, name: 'Harshit' },
       _id: 1,
       description: "This is a description",
       image: 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimages.pexels.com%2Fphotos%2F443446%2Fpexels-photo-443446.jpeg%3Fcs%3Dsrgb%26dl%3Ddaylight-forest-glossy-443446.jpg%26fm%3Djpg&f=1&nofb=1&ipt=a6f99529724b7841912b04516a039d699c2c3e3453d1f47279eedbe0b5097fd6&ipo=images',

@@ -1,8 +1,22 @@
-import SearchForm from "../../components/SearchForm";
+import SearchForm from "@/components/SearchForm";
+import StartupCard from "@/components/StartupCard";
 
 export default async function Home({ searchParams }: { searchParams: Promise<{ query: string }> }) {
 
   const query = (await searchParams).query;
+
+  const posts = [
+    {
+      _createdAt: new Date(),
+      views: 55,
+      authour: { _id: 1 },
+      _id: 1,
+      description: "This is a description",
+      image: 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimages.pexels.com%2Fphotos%2F443446%2Fpexels-photo-443446.jpeg%3Fcs%3Dsrgb%26dl%3Ddaylight-forest-glossy-443446.jpg%26fm%3Djpg&f=1&nofb=1&ipt=a6f99529724b7841912b04516a039d699c2c3e3453d1f47279eedbe0b5097fd6&ipo=images',
+      category: "Robots",
+      title: "We Robots"
+    },
+  ]
 
   return (
     <>
@@ -13,6 +27,23 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ q
         </p>
 
         <SearchForm query={query} />
+      </section>
+
+      <section className="section_container">
+        <p className="text-30-semibold">
+          {query ? `Search results for "${query}"` : 'All Startups'}
+        </p>
+
+        <ul className="mt-7 card_grid">
+          {posts?.length > 0 ? (
+            posts.map((post: StartupCardType) => (
+              <StartupCard key={post?._id} post={post} />
+            ))
+          ) : (
+            <p className="no-results">No startups found</p>
+          )}
+
+        </ul>
       </section>
 
     </>

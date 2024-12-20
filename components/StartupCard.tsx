@@ -18,7 +18,7 @@ export default function StartupCard({ post }: { post: StartupTypeCard }) {
                 </div>
             </div>
 
-            <div className="felx-between mt-5 gap-5 ">
+            <div className="flex-between mt-5 gap-5 ">
                 <div className="flex-1 ">
                     <Link href={`/user/${authorId}`}>
                         <p className="text-16-medium line-clamp-1">{name}</p>
@@ -26,10 +26,10 @@ export default function StartupCard({ post }: { post: StartupTypeCard }) {
                     <Link href={`/startup/${_id}`}>
                         <h3 className="text-26-semibold line-clamp-1">{title}</h3>
                     </Link>
-                    <Link href={`/user/${authorId}`}>
-                        <Image src="https://placehold.co/600x400" alt="placeholder" width={48} height={48} className="rounded-full" />
-                    </Link>
                 </div>
+                <Link href={`/user/${authorId}`}>
+                    <Image src="https://placehold.co/48x48" alt="placeholder" width={48} height={48} className="rounded-full" />
+                </Link>
             </div>
         </li>
     );

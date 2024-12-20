@@ -20,7 +20,7 @@ const SearchForm = ({ query }: { query?: string }) => {
                     </button>
                 </div>
             </Form>
-            <div>SearchForm</div>
+            {/* <div>SearchForm</div> */}
         </>
     );
 }

@@ -6,7 +6,7 @@ import { client } from "@/sanity/lib/client";
 export default async function Home({ searchParams }: { searchParams: Promise<{ query: string }> }) {
 
   const query = (await searchParams).query;
-  const posts = await client.fetch(STARTUPS_QUERY);
+  const posts = await client.fetch(STARTUPS_QUERY) as StartupCardType[];
 
   return (
     <>

@@ -6,7 +6,8 @@ import { sanityFetch, SanityLive } from "@/sanity/lib/live";
 export default async function Home({ searchParams }: { searchParams: Promise<{ query: string }> }) {
 
   const query = (await searchParams).query;
-  const { data } = await sanityFetch({ query: STARTUPS_QUERY }); // (Live content api, ISR) fetch all things when live changes happen
+  const params = { search: query || null };
+  const { data } = await sanityFetch({ query: STARTUPS_QUERY, params }); // (Live content api, ISR) fetch all things when live changes happen
   const posts = data as StartupCardType[];
 
   return (

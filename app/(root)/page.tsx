@@ -10,7 +10,7 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ q
   const params = { search: query || null };
 
   const session = await auth();
-  console.log("THIS IS A SESSION ID from page: " + session?.id);
+  // console.log("THIS IS A SESSION ID from page: " + session?.id);
 
   const { data } = await sanityFetch({ query: STARTUPS_QUERY, params }); // (Live content api, ISR) fetch all things when live changes happen
   const posts = data as StartupCardType[];

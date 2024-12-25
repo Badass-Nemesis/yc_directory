@@ -149,7 +149,8 @@ export default function StartupForm() {
                     }}
                     previewOptions={{
                         disallowedElements: ["style"]
-                    }}
+                    }} 
+                    className="startup-form_editor"
                 />
 
                 {errors.pitch && (

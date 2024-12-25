@@ -11,6 +11,10 @@ import { Skeleton } from "@/components/ui/skeleton";
 import View from "@/components/View";
 import StartupCard, { StartupCardType } from "@/components/StartupCard";
 
+interface EditorPostResult {
+    select: StartupCardType[];
+};
+
 const md = markdownit();
 
 export const experimental_ppr = true;
@@ -18,10 +22,12 @@ export const experimental_ppr = true;
 export default async function Page({ params }: { params: Promise<{ id: string }> }) {
     const id = (await params).id;
 
-    const post = await client.fetch(STARTUP_BY_ID_QEURY, { id });
+    const [post, editorPostsQueryResult] = await Promise.all([
+        client.fetch(STARTUP_BY_ID_QEURY, { id }),
+        client.fetch<EditorPostResult>(PLAYLIST_BY_SLUG_QUERY, { slug: "editor-picks" })
+    ])
 
-    const editorPosts = (await client.fetch(PLAYLIST_BY_SLUG_QUERY, { slug: "editor-picks" }))?.select as unknown as StartupCardType[];
-    // console.log(editorPosts);
+    const editorPosts = editorPostsQueryResult.select;
 
     if (!post) return notFound();
 

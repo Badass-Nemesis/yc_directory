@@ -14,6 +14,7 @@ import { createPitch } from "@/lib/actions";
 
 export default function StartupForm() {
     const [errors, setErrors] = useState<Record<string, string>>({});
+    const [prevFormState, setPrevFormState] = useState<Record<string, string>>({});
     const [pitch, setPitch] = useState("");
     const { toast } = useToast();
     const router = useRouter();
@@ -25,8 +26,12 @@ export default function StartupForm() {
                 description: formData.get("description") as string,
                 category: formData.get("category") as string,
                 link: formData.get("link") as string,
-                pitch,
+                pitch: pitch,
             }
+
+            // TODO: remove this useState and use the useActionState hook maybe, to retain the user 
+            // input values in case of error or successfull submition
+            setPrevFormState(formValues);
 
             await formSchema.parseAsync(formValues);
 
@@ -82,6 +87,7 @@ export default function StartupForm() {
                     className="startup-form_input"
                     required
                     placeholder="Startup Title"
+                    defaultValue={prevFormState?.title}
                 />
 
                 {errors.title && (
@@ -97,6 +103,7 @@ export default function StartupForm() {
                     className="startup-form_textarea"
                     required
                     placeholder="Startup Description"
+                    defaultValue={prevFormState?.description}
                 />
 
                 {errors.description && (
@@ -112,6 +119,7 @@ export default function StartupForm() {
                     className="startup-form_input"
                     required
                     placeholder="Startup Category (Tech, Health, Education ....)"
+                    defaultValue={prevFormState?.category}
                 />
 
                 {errors.category && (
@@ -127,6 +135,7 @@ export default function StartupForm() {
                     className="startup-form_input"
                     required
                     placeholder="Startup Image URL"
+                    defaultValue={prevFormState?.link}
                 />
 
                 {errors.link && (
@@ -149,8 +158,9 @@ export default function StartupForm() {
                     }}
                     previewOptions={{
                         disallowedElements: ["style"]
-                    }} 
+                    }}
                     className="startup-form_editor"
+                    defaultValue={prevFormState?.pitch}
                 />
 
                 {errors.pitch && (
